@@ -10,13 +10,14 @@ class Program
         Console.Write("Select Mode (Driver or Manager): ");
         string mode = Console.ReadLine();
 
-        if(mode == "Driver")  {
+        if(mode=="driver")  {
             
             string command;
 
             do {
                 
                 Console.Write("Enter Stop Name: ");
+                string stopName = Console.ReadLine();
 
                 Console.Write("Enter number of boarded passengers: ");
                 int boarded = int.Parse(Console.ReadLine());
@@ -29,6 +30,7 @@ class Program
 
 
 
-        } while(command!="end");
+            } while(command!="end");
+        }
     }
 }
