@@ -93,6 +93,61 @@ public class ConsoleUI  {
 
 
             } while(command!="end");
+
+        } else if(mode=="Manager")
+        {
+
+            string command;
+
+            do {
+                
+                
+                command = AnsiConsole.Prompt(
+                            new SelectionPrompt<string>()
+                            .Title("Make a selection")
+                            .AddChoices(new[]
+                            {
+                                "Add Stop","Delete Stop","View Stops","end"
+                            }
+                            )
+                            );
+
+                if(command=="Add Stop")
+                {
+                var newStopName = AnsiConsole.Prompt(new TextPrompt<string>("Enter name of new stop: "));
+                dataManager.AddStop(new Stop(newStopName));
+                
+
+                }
+                
+                else if(command=="Delete Stop")
+                {
+                    Stop selectedStop = AnsiConsole.Prompt(
+                        new SelectionPrompt<Stop>()
+                        .Title("Select Stop")
+                        .AddChoices(dataManager.Stops)
+                    );
+                    dataManager.RemoveStop(selectedStop);
+                   
+                }
+                
+                else if(command=="View Stops")
+                {
+                    var table = new Table();
+
+                    table.AddColumn("Stop Name");
+
+
+                    foreach(var stop in dataManager.Stops)
+                    {
+                        table.AddRow(stop.Name);
+                    }
+                    AnsiConsole.Write(table);
+                }
+
+
+
+            } while(command!="end");
         }
     }
     
